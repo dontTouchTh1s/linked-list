@@ -1,12 +1,12 @@
 ﻿using System;
-
+using LinkedList.LinkedList;
 namespace LinkedList
 {
     internal class Program
     {
         public static void Main(string[] args)
         {
-            var _students = new LinkedList();
+            var _students = new LinkedList.LinkedList();
 
             var breakTime = false;
             while (!breakTime)
@@ -14,7 +14,7 @@ namespace LinkedList
                 Console.Clear();
                 Console.WriteLine("Enter number and then press enter.");
                 Console.WriteLine("(1) Insert new student to list");
-                Console.WriteLine("(2) Find student in list by student number.");
+                Console.WriteLine("(2) Find student in list by student number and delete it.");
                 Console.WriteLine("(3) Show list records.");
                 Console.WriteLine("(4) Exit :( ");
                 var key = Console.ReadLine();
@@ -25,17 +25,16 @@ namespace LinkedList
                         _students.Add(student);
                         break;
                     case "2":
-                        var find = _students.Find(Find());
-                        Console.WriteLine("{0}, {1}, {2}", find.Major, find.Number,
-                            find.GPA);
+                        var find = _students.Delete(Find());
+                        if (find)
+                            Console.WriteLine("Deleted!");
+                        else Console.WriteLine("Not found!");
                         Console.WriteLine("Enter a key to back ...");
                         Console.ReadKey();
                         break;
                     case "3":
                         Console.Clear();
-                        for (var i = 0; i < _students.Length; i++)
-                            Console.WriteLine("{0}) {1}, {2}, {3}", i, _students[i].Major, _students[i].Number,
-                                _students[i].GPA);
+                        _students.Print();
                         Console.WriteLine("Enter a key to back ...");
                         Console.ReadKey();
                         break;
